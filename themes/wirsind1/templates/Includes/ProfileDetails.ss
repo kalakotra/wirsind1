@@ -8,6 +8,7 @@
 							So wird dein Eintrag im EPU-Netzwerk aussehen. Du möchtest noch etwas ändern? Dann gehe einen Schritt zurück!
 						</p>
 					<% else %>
+						<h3>Fast geschafft!</h3>
 						<p>
 							So wird dein Eintrag im EPU-Netzwerk aussehen. Du möchtest noch etwas ändern? Dann gehe einen Schritt zurück!
 							<br />

@@ -1,6 +1,6 @@
 <form $AttributesHTML>
 	<% if $Message %>
-	<p id="{$FormName}_error" class="message $MessageType">$Message</p>
+	<p id="{$FormName}_error" class="message $MessageType text-danger">$Message</p>
 	<% else %>
 	<p id="{$FormName}_error" class="message $MessageType" style="display: none"></p>
 	<% end_if %>
@@ -9,6 +9,21 @@
 		<div class="row">
 			<div class="col-12">
 				$Fields.dataFieldByName(Subject).FieldHolder
+			</div>
+			<% if $Fields.dataFieldByName(Password) %>
+				<div class="col-12">
+					<h3>Daten für einloggen:</h3>
+				</div>
+				<div class="col-12 col-lg-6 py-2">
+					$Fields.dataFieldByName(Email).FieldHolder
+				</div>
+			
+				<div class="col-12 col-lg-6 py-2">
+					$Fields.dataFieldByName(Password).FieldHolder
+				</div>
+			<% end_if %>
+			<div class="col-12">
+				<h3>Unternehmen Daten:</h3>
 			</div>
 			<div class="col-12 col-lg-6 py-2">
 				$Fields.dataFieldByName(CompanyName).FieldHolder
@@ -34,17 +49,12 @@
 			<div class="col-12 col-lg-6 py-2">
 				$Fields.dataFieldByName(Region).FieldHolder
 			</div>
-			<div class="col-12 col-lg-6 py-2">
-				$Fields.dataFieldByName(Email).FieldHolder
-			</div>
-			<% if $Fields.dataFieldByName(Password) %>
-				<div class="col-12 col-lg-6 py-2">
-					$Fields.dataFieldByName(Password).FieldHolder
-				</div>
-			<% end_if %>
+			
+			
 			<div class="col-12 col-lg-6 py-2">
 				$Fields.dataFieldByName(Telephone).FieldHolder
 			</div>
+			
 			<div class="col-12 col-lg-6 py-2">
 				$Fields.dataFieldByName(Website).FieldHolder
 			</div>

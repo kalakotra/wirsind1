@@ -306,6 +306,11 @@ form .checkbox input {
 	display: none;
 }
 
+.field .description {
+	color: var(--bs-danger);
+	font-size: small;
+}
+
 @media (max-width: 1800px) {
 
 }

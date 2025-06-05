@@ -2,6 +2,8 @@
 
 namespace {
 
+use SilverStripe\Forms\ConfirmedPasswordField;
+
     use SilverStripe\CMS\Controllers\ContentController;
     use SilverStripe\Forms\PasswordField;
     use SilverStripe\View\Requirements;
@@ -63,7 +65,7 @@ namespace {
                 TextField::create('PostCode', '')->setAttribute("placeholder", "PLZ*"),
                 TextField::create('City', '')->setAttribute("placeholder", "Ort*"),
                 $myRegion = DropdownField::create('Region', '', $myRegions)->setEmptyString("Bezirk wählen...*"),
-                $email = EmailField::create('Email', '')->setAttribute("placeholder", "E-Mail*"),
+                $email = EmailField::create('Email', 'E-Mail*'), //->setAttribute("placeholder", "E-Mail*"),
                 TextField::create('Telephone', '')->setAttribute("placeholder", "Telefonnummer"),
                 TextField::create('Website', '')->setAttribute("placeholder", "Website"),
                 FileField::create('Image', '')->setAttribute("placeholder", "Foto hochladen"),
@@ -130,7 +132,8 @@ namespace {
                 }
 
                 $fields->push(
-                    PasswordField::create('Password', '')->setAttribute("placeholder", "Passwort*")
+                    ConfirmedPasswordField::create('Password', 'Passwort*', null, null, false, 'Passwort bestätigen*')->setDescription("Das Passwort muss mindestens 8 Zeichen lang sein.")
+                        //->setAttribute("placeholder", "z.B. 12345678")
                 );
 
                 $validator->addRequiredField("Password");
