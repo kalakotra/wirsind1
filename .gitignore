@@ -6,6 +6,7 @@
 /public/_resources/
 /.graphql-generated/
 /public/_graphql/
+/public/assets/
 /.ddev
 /.vscode
 
