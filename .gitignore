@@ -1,0 +1,16 @@
+/silverstripe-cache/
+/.env
+/vendor/
+/themes/
+/_resources/
+/public/_resources/
+/.graphql-generated/
+/public/_graphql/
+/.ddev
+/.vscode
+
+*.code-workspace
+silverstripe.txt
+.env.example
+.env
+.sql
