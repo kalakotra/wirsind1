@@ -1,0 +1,30 @@
+{
+    "name": "kalakotra/wirsind1-bootstrap",
+    "description": "The SilverStripe theme on Bootstrap 5 SCSS",
+    "type": "silverstripe-theme",
+    "keywords": ["silverstripe", "theme"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Amir Mehmedovic",
+            "homepage": "http://www.kalakotra.com"
+        }
+    ],
+    "require": {
+        "composer/installers": "*",
+        "silverstripe/framework": ">=3.5",
+        "axllent/silverstripe-scss": "^1.7",
+        "axllent/silverstripe-minifier": "^1.0"
+    },
+	"extra": {
+		"branch-alias": {
+			"dev-master": "3.2.x-dev"
+		},
+        "expose": [
+            "css",
+            "images",
+            "javascript",
+            "webfonts"
+        ]
+	}
+}

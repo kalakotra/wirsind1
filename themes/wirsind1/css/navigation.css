@@ -1,0 +1,64 @@
+.hamburger-inner, .hamburger-inner:after, .hamburger-inner:before {
+	background-color: var(--bs-dark) !important;
+}
+
+#mobileMenu {
+	position: fixed;
+	top: 0px;
+	left: -3000px;
+	z-index: 1021;
+	background-color: rgba(255,255,255,.95);
+
+	width: 100%;
+	min-width: 250px;
+	bottom: 0px;
+	overflow: auto;
+}
+	#mobileMenu.is-active {
+		left: 0px;
+	}
+
+	#mobileMenu > a {
+		/*background: linear-gradient(to right,#064a3b,#9cbf22);*/
+	}
+	#mobileMenu ul {
+		list-style: none;
+	}
+		#mobileMenu nav > ul {
+			padding: 10px 15px;
+		}
+
+			#mobileMenu nav > ul li {
+				position: relative;
+				text-align: center;
+			}
+		#mobileMenu nav > ul > li > a {
+			color: var(--bs-dark);
+			text-transform: uppercase;
+			font-weight: bold;
+			text-decoration: none;
+		}
+
+		#mobileMenu ul ul {
+			padding-left: 0px;
+			padding-bottom: 10px;
+		}
+			#mobileMenu ul ul a {
+				color: var(--bs-dark);
+				text-decoration: none;
+			}
+
+.primary > ul > .current,
+.primary > ul > .section {
+	position: relative;
+}
+	.primary > ul > .current:before,
+	.primary > ul > .section:before {
+		content: "";
+		position: absolute;
+		width: calc(100% - 2rem);
+		height: 3px;
+		background-color: var(--bs-warning);
+		left: 1rem;
+		bottom: .5rem;
+	}
