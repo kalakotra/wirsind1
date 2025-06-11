@@ -117,12 +117,12 @@
 
 			<% if getCurrentMember %>
 				<div class="col-12 py-3 py-lg-5 text-center">
-					<a href="$Link" class="btn btn-secondary mx-2">Zurück</a> <a href="{$Link}finishAddingProfile/" class="btn btn-dark mx-2 text-white">Absenden</a>
+					<a href="$Link" class="btn btn-secondary mx-2">Zurück</a> <a href="{$Link}/finishAddingProfile/" class="btn btn-dark mx-2 text-white">Absenden</a>
 				</div>
 			<% else %>
 				<% if $inEdit %>
 					<div class="col-12 py-3 py-lg-5 text-center">
-						<a href="$Link" class="btn btn-secondary mx-2">Zurück</a> <a href="{$Link}finishAddingProfile/" class="btn btn-dark mx-2 text-white">Absenden</a>
+						<a href="$Link" class="btn btn-secondary mx-2">Zurück</a> <a href="{$Link}/finishAddingProfile/" class="btn btn-dark mx-2 text-white">Absenden</a>
 					</div>
 				<% end_if %>
 			<% end_if %>

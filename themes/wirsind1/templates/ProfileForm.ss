@@ -12,7 +12,7 @@
 			</div>
 			<% if $Fields.dataFieldByName(Password) %>
 				<div class="col-12">
-					<h3>Daten für einloggen:</h3>
+					<h3>Zugangsdaten:</h3>
 				</div>
 				<div class="col-12 col-lg-6 py-2">
 					$Fields.dataFieldByName(Email).FieldHolder

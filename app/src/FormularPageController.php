@@ -2,6 +2,9 @@
 
 namespace {
 
+use SilverStripe\Security\Security;
+use SilverStripe\Core\Injector\Injector;
+use SilverStripe\Security\IdentityStore;
 use SilverStripe\Forms\ConfirmedPasswordField;
 
     use SilverStripe\CMS\Controllers\ContentController;
@@ -172,6 +175,10 @@ use SilverStripe\Forms\ConfirmedPasswordField;
                     } else {
                         if ($myPostId > 0) {
                             $myMember = Member::get()->byId($myPostId);
+
+                            if (!$myMember) {
+                                $myMember = Member::create();
+                            }
                         } else {
                             $myMember = Member::create();
                         }
@@ -181,62 +188,12 @@ use SilverStripe\Forms\ConfirmedPasswordField;
 
                         $myMember->write();
 
-                        Cookie::set("TempMemberID", $myMember->ID);
-
-                        /*$myMember->Groups()->add(3);
-                        $myMember->New = 1;
-                        $myMember->write();*/
-
-                        /* move files to upload folder !!!! */
-
-                        /*$email = Email::create();
-                        $email->setFrom('team@wirsind1.at');
-                        $email->setTo($myMember->Email);
-                        $email->setSubject($config->RegEmailTitle); */
-
-                        /* if problematic than casting DBField::create_field("HTMLText", "")*/
-                        /*$myText = str_replace("[NAME]", $myMember->FirstName, DBField::create_field("HTMLText", $config->RegEmailText) );
-                        $email->setBody($myText);
-                        $email->send();*/
+                        //Cookie::set("TempMemberID", $myMember->ID);
+                        $rememberMe = (isset($data['Remember']) && Security::config()->get('autologin_enabled'));
+                        $identityStore = Injector::inst()->get(IdentityStore::class);
+                        $identityStore->logIn($myMember, $rememberMe, $this->getRequest());
 
                         
-                        /* send email to all admins */
-                        /*
-                        $myAdminGroup = Group::get()->byId(2);
-
-                        $myAdminEmails = "";
-                        foreach ($myAdminGroup->Members() as $key => $value) {
-                            if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                                
-                                if ($myAdminEmails == "" ) {
-                                    $myAdminEmails = $value->Email;
-                                } else {
-                                    $myAdminEmails .= ",".$value->Email;
-                                }
-                            }
-                        }
-                        */
-                        //if ($myAdminEmails != "" ) {
-                            // admin email send only on team@wirsind1.at
-                            /*$email = Email::create();
-                            $email->setFrom('no-reply@'.Director::host());
-                            //$email->setTo($myAdminEmails);
-                            $email->setTo("team@wirsind1.at");
-                            $email->setBcc("office@seeyou.at");
-                            $email->setSubject($config->RegAdminEmailTitle); */
-
-                            /* if problematic than casting DBField::create_field("HTMLText", "")*/
-                            //$email->setBody($config->RegAdminEmailText);
-
-                            //$email->send();
-                        //}
-
-                        /*$myData = [
-                            'ProfileForm' => DBField::create_field("HTMLText", $config->RegAfterText),
-                            'Content' => $config->RegAfterText
-                        ];
-
-                        return $myData;*/
                         $myMember->inEdit = true;
                         return $this->customise($myMember)->renderWith("Page");
                     }
@@ -249,7 +206,26 @@ use SilverStripe\Forms\ConfirmedPasswordField;
             $config = SiteConfig::current_site_config();
 
             if ($myMember = $this->getCurrentMember()) {
-                
+                $myMemberID = Cookie::get("TempMemberID");
+                if ($myMemberID) {
+                    Cookie::force_expiry("TempMemberID");
+
+                    $myMember->Groups()->add(3);
+                    $myMember->New = 1;
+                    $myMember->write();
+
+                    $email = Email::create();
+                    $email->setFrom('no-reply@'.Director::host());
+                    //$email->setTo($myAdminEmails);
+                    $email->setTo("team@wirsind1.at");
+                    $email->setBcc("office@seeyou.at");
+                    $email->setSubject($config->RegAdminEmailTitle); 
+
+                    /* if problematic than casting DBField::create_field("HTMLText", "")*/
+                    $email->setBody($config->RegAdminEmailText);
+
+                    $email->send();
+                }
             } else {
                 // get member form cookie
                 $myMemberID = Cookie::get("TempMemberID");
@@ -292,6 +268,13 @@ use SilverStripe\Forms\ConfirmedPasswordField;
 
                 return $myData;
             }
+
+            $myData = [
+                'ProfileForm' => DBField::create_field("HTMLText", $config->RegAfterText),
+                'Content' => $config->RegAfterText
+            ];
+
+            return $myData;
 
         }
         
