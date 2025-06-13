@@ -19,6 +19,16 @@
 			<li class="nav-item">
 				<a href="/epu-netzwerk/profil" class="nav-link px-2" ><i class="fas fa-user-edit"></i><span class="visually-hidden">Edit Profile</span></a>
 			</li>
+			<li>
+				<a href="/Security/logout?BackURL=/home" class="nav-link px-2" ><i class="fas fa-sign-out-alt"></i><span class="visually-hidden">Logout</span></a>
+			</li>
+		<% else %>
+			<li class="nav-item">
+				<a href="/epu-netzwerk/profil" class="nav-link px-2" ><i class="fas fa-user-plus"></i><span class="visually-hidden">Register</span></a>
+			</li>
+			<li class="nav-item">
+				<a href="/Security/login?BackURL=/epu-netzwerk/profil" class="nav-link px-2" ><i class="fas fa-sign-in-alt"></i><span class="visually-hidden">Login</span></a>
+			</li>
 		<% end_if %>
 	</ul>
 </nav>

@@ -1,5 +1,6 @@
 <?php
 
+use SilverStripe\Forms\TextareaField;
 use SilverStripe\ORM\DataExtension;
 use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\LiteralField;
@@ -119,6 +120,8 @@ class MemberExtension extends DataExtension
         $fields->renameField("SocialMedia", "Facebook-Link");
         $fields->renameField("Instagram", "Instagram-Link");
         $fields->renameField("OtherSocialMedia", "Weiterer Social Media-Link");
+
+        $fields->addFieldToTab("Root.Main", TextareaField::create("Description"), "Text");
         
     }
     public function updateMyImage() {

@@ -22,7 +22,8 @@ class CustomSiteConfig extends DataExtension
         'RegMailOneDayText' => 'HTMLText',
         'RegAdminEmailTitle' => 'Varchar',
         'RegAdminEmailText' => 'HTMLText',
-        'RegAllreadyRegistered' => 'HTMLText'
+        'RegAllreadyRegistered' => 'HTMLText',
+        'RegIfChangedDeactivated' => 'HTMLText',
     ];
 
     private static $has_one = [
@@ -76,6 +77,10 @@ class CustomSiteConfig extends DataExtension
             LiteralField::create("sep4", "<h1>E-Mail is registered</h1>"),
             HTMLEditorField::create("RegAllreadyRegistered", "Text")->addExtraClass("stacked")
 
+        ]);
+
+        $fields->addFieldsToTab("Root.Profile", [
+            HTMLEditorField::create("RegIfChangedDeactivated", "Profile change - deactivate")->addExtraClass("stacked")
         ]);
     }
 }

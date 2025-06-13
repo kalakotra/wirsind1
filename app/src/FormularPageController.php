@@ -2,7 +2,8 @@
 
 namespace {
 
-use SilverStripe\Security\Security;
+use SilverStripe\Forms\LiteralField;
+    use SilverStripe\Security\Security;
 use SilverStripe\Core\Injector\Injector;
 use SilverStripe\Security\IdentityStore;
 use SilverStripe\Forms\ConfirmedPasswordField;
@@ -149,15 +150,48 @@ use SilverStripe\Forms\ConfirmedPasswordField;
             if ($data["Subject"] != "") {
                 $this->redirect("home/");
             } else {
+                $config = SiteConfig::current_site_config();
+
+
                 if ($myMember = $this->getCurrentMember()) { 
                     if ($myMember->ID == $data["ID"]) {
+
+                        if ($myMember->Deactivated == 0) {
+                            // inform admin about changes
+                            $email = Email::create();
+                            $email->setFrom('no-reply@'.Director::host());
+                            //$email->setTo($myAdminEmails);
+                            $email->setTo("team@wirsind1.at");
+                            $email->setBcc("office@seeyou.at");
+                            $email->setSubject($config->RegAdminEmailTitle . " - Edit - " . $myMember->FirstName . " " . $myMember->Surname);
+
+                            // add admin link to edit member
+                            $email->setBody(
+                                DBField::create_field("HTMLText", $config->RegAdminEmailText) .
+                                "<br><br>" .
+                                "<a href='" . Director::absoluteBaseURL() . "/admin/profiles/profiles/EditForm/field/profiles/item/" . $myMember->ID . "/edit' target='_blank'>Edit Member</a>"
+                            );
+
+                            /* if problematic than casting DBField::create_field("HTMLText", "")*/
+                            //$email->setBody($config->RegAdminEmailText);
+
+                            $email->send();
+                        }
+
                         $form->saveInto($myMember);
                         $myMember->write();
                         $myMember->inEdit = true;
+                        $myMember->Deactivated = true;
+                        $myMember->write();
+
+
+                        
+
+                        
                         return $this->customise($myMember)->renderWith("Page");
                     }
                 } else {
-                    $config = SiteConfig::current_site_config(); 
+                     
                     /* check if email exists */
                     $myMember = Member::get()->filter("Email", $data["Email"]);
                     $myPostId = 0;
@@ -188,10 +222,10 @@ use SilverStripe\Forms\ConfirmedPasswordField;
 
                         $myMember->write();
 
-                        //Cookie::set("TempMemberID", $myMember->ID);
-                        $rememberMe = (isset($data['Remember']) && Security::config()->get('autologin_enabled'));
-                        $identityStore = Injector::inst()->get(IdentityStore::class);
-                        $identityStore->logIn($myMember, $rememberMe, $this->getRequest());
+                        Cookie::set("TempMemberID", $myMember->ID);
+                        //$rememberMe = (isset($data['Remember']) && Security::config()->get('autologin_enabled'));
+                        //$identityStore = Injector::inst()->get(IdentityStore::class);
+                        //$identityStore->logIn($myMember, $rememberMe, $this->getRequest());
 
                         
                         $myMember->inEdit = true;

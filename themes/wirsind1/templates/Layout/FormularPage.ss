@@ -20,6 +20,11 @@
 			<% end_if %>
 			<div class="col-12 col-lg-10 py-3">
 				$ProfileForm
+				<% if getCurrentMember %>
+					<div class="col-12 small py-2">
+						$SiteConfig.RegIfChangedDeactivated
+					</div>
+				<% end_if %>
 			</div>
 		</div>
 	</div>
