@@ -1,0 +1,13 @@
+/.ddev/
+/.graphql-generated/
+/.vscode/
+/packages/
+/vendor/
+/public/_graphql/
+/public/_resources/
+/public/assets/
+
+.env
+*.sql
+*.gz
+*.log

@@ -1,0 +1,6 @@
+de:
+  SilverStripe\Control\Email\ForgotPasswordEmail_ss:
+    HELLO: Hallo
+    TEXT1: 'hier ist dein Link zum Zurücksetzen des Passworts für www.wirsind1.at:'
+    TEXT2: 'Liebe Grüße vom'
+    TEXT3: 'Team Wir sind 1'

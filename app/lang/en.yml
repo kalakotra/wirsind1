@@ -1,0 +1,156 @@
+en:
+  BlogPostExtension:
+    db_Subtitle: Subtitle
+  CustomMemberAdmin:
+    MENUTITLE: Profiles
+  CustomSiteConfig:
+    db_RegAdminEmailProfileChanged: 'Reg admin email profile changed'
+    db_RegAdminEmailText: 'Reg admin email text'
+    db_RegAdminEmailTitle: 'Reg admin email title'
+    db_RegAfterText: 'Reg after text'
+    db_RegAllreadyRegistered: 'Reg allready registered'
+    db_RegEmailText: 'Reg email text'
+    db_RegEmailTitle: 'Reg email title'
+    db_RegIfChangedDeactivated: 'Reg if changed deactivated'
+    db_RegMailOneDayText: 'Reg mail one day text'
+    db_RegMailOneDayTitle: 'Reg mail one day title'
+    db_RegMailPublicText: 'Reg mail public text'
+    db_RegMailPublicTitle: 'Reg mail public title'
+    db_RegUserEmailProfileChangedVerified: 'Reg user email profile changed verified'
+  ExportPage:
+    PLURALNAME: 'Export Pages'
+    PLURALS:
+      one: 'An Export Page'
+      other: '{count} Export Pages'
+    SINGULARNAME: 'Export Page'
+  FilterPage:
+    PLURALNAME: 'Filter Pages'
+    PLURALS:
+      one: 'A Filter Page'
+      other: '{count} Filter Pages'
+    SINGULARNAME: 'Filter Page'
+    db_Subtitle: Subtitle
+    has_many_HomeSlide: 'Home slide'
+  FooterLogo:
+    PLURALNAME: 'Footer Logos'
+    PLURALS:
+      one: 'A Footer Logo'
+      other: '{count} Footer Logos'
+    SINGULARNAME: 'Footer Logo'
+    db_Sort: Sort
+    db_Text: Text
+    has_one_Logo: Logo
+  FormularPage:
+    PLURALNAME: 'Formular Pages'
+    PLURALS:
+      one: 'A Formular Page'
+      other: '{count} Formular Pages'
+    SINGULARNAME: 'Formular Page'
+  HomePage:
+    PLURALNAME: 'Home Pages'
+    PLURALS:
+      one: 'A Home Page'
+      other: '{count} Home Pages'
+    SINGULARNAME: 'Home Page'
+    db_BlogText: 'Blog text'
+    db_BlogTitle: 'Blog title'
+    db_ProfilesLinkTitle: 'Profiles link title'
+    db_ProfilesLinkURL: 'Profiles link URL'
+    db_ProfilesText: 'Profiles text'
+    db_ProfilesTitle: 'Profiles title'
+    has_many_HomeSlide: 'Home slide'
+  HomeSlide:
+    PLURALNAME: 'Home Slides'
+    PLURALS:
+      one: 'A Home Slide'
+      other: '{count} Home Slides'
+    SINGULARNAME: 'Home Slide'
+    db_Inactive: Inactive
+    db_SlideTime: 'Slide time'
+    db_Sort: Sort
+    db_Title: Title
+    has_one_HomePage: 'Home page'
+    has_one_Image: Image
+    has_one_MobileImage: 'Mobile image'
+    has_one_Page: Page
+    has_one_Profile: Profile
+    has_one_VideoDesktop: 'Video desktop'
+    has_one_VideoMobile: 'Video mobile'
+  MemberExtension:
+    db_Changed: Changed
+    db_City: City
+    db_CompanyName: 'Company name'
+    db_Deactivated: Deactivated
+    db_Description: Description
+    db_EditedFromAdmin: 'Edited from admin'
+    db_Instagram: Instagram
+    db_IntroductionLink: 'Introduction link'
+    db_LinkedIn: 'Linked in'
+    db_New: New
+    db_NoNewsletter: 'No newsletter'
+    db_OldId: 'Old id'
+    db_OldImageId: 'Old image id'
+    db_OldIndustry: 'Old industry'
+    db_OldRegion: 'Old region'
+    db_OldText: 'Old text'
+    db_OtherSocialMedia: 'Other social media'
+    db_PostCode: 'Post code'
+    db_Region: Region
+    db_SendInfoEmail: 'Send info email'
+    db_SocialMedia: 'Social media'
+    db_Street: Street
+    db_Telephone: Telephone
+    db_Text: Text
+    db_TikTok: 'Tik tok'
+    db_Website: Website
+    has_one_Image: Image
+    has_one_MemberIndustry: 'Member industry'
+  MemberIndustry:
+    PLURALNAME: 'Member Industries'
+    PLURALS:
+      one: 'A Member Industry'
+      other: '{count} Member Industries'
+    SINGULARNAME: 'Member Industry'
+    db_Title: Title
+  NewRegistration:
+    PLURALNAME: 'New Registrations'
+    PLURALS:
+      one: 'A New Registration'
+      other: '{count} New Registrations'
+    SINGULARNAME: 'New Registration'
+  Page:
+    DESCRIPTION: 'Generic content page'
+    PLURALNAME: Pages
+    PLURALS:
+      one: 'A Page'
+      other: '{count} Pages'
+    SINGULARNAME: Page
+    db_ShowInFooter: 'Show in footer'
+  ProfileForm:
+    Change: 'Passwort ändern'
+    Reset: Abbrechen
+    Submit: Weiter
+    Update: Ändern
+  SliderImage:
+    Profile: Profile
+    SITETREE: Link
+  VideoPage:
+    PLURALNAME: 'Video Pages'
+    PLURALS:
+      one: 'A Video Page'
+      other: '{count} Video Pages'
+    SINGULARNAME: 'Video Page'
+    db_PreviewText: 'Preview text'
+    db_PreviewTitle: 'Preview title'
+    db_TerminLink: 'Termin link'
+    db_TextAfterTerminLink: 'Text after termin link'
+    db_Video1Title: 'Video1 title'
+    db_WidgetText: 'Widget text'
+    db_WidgetTitle: 'Widget title'
+    has_one_HeaderImage: 'Header image'
+    has_one_Poster1: Poster1
+    has_one_Poster2: Poster2
+    has_one_Poster3: Poster3
+    has_one_Video1: Video1
+    has_one_Video2: Video2
+    has_one_Video3: Video3

@@ -1,0 +1,67 @@
+{
+    "name": "silverstripe/installer",
+    "type": "silverstripe-recipe",
+    "description": "The SilverStripe Framework Installer",
+    "require": {
+        "php": "^8.3",
+        "silverstripe/recipe-plugin": "^2",
+        "silverstripe/recipe-cms": "^6",
+        "silverstripe/login-forms": "^6",
+        "wilr/silverstripe-googlesitemaps": "^4.1",
+        "axllent/silverstripe-scss": "^2.1",
+        "axllent/silverstripe-minifier": "^2.0",
+        "axllent/silverstripe-scaled-uploads": "^2.3",
+        "symbiote/silverstripe-gridfieldextensions": "^5.2",
+        "bummzack/sortablefile": "^3.0",
+        "axllent/silverstripe-meta-editor": "^1.2",
+        "jonom/focuspoint": "^6.0",
+        "silverstripe/blog": "^5.1",
+        "silverstripe/htmleditor-tinymce": "^1.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.5"
+    },
+    "extra": {
+        "resources-dir": "_resources",
+        "project-files-installed": [
+            "app/.htaccess",
+            "app/_config.php",
+            "app/_config/mimevalidator.yml",
+            "app/_config/mysite.yml",
+            "app/src/Page.php",
+            "app/src/PageController.php"
+        ],
+        "public-files-installed": [
+            ".htaccess",
+            "index.php",
+            "web.config"
+        ],
+        "expose": [
+            "themes/wirsind1/css",
+            "themes/wirsind1/images",
+            "themes/wirsind1/javascript",
+            "themes/wirsind1/webfonts"
+        ]
+    },
+    "config": {
+        "process-timeout": 600,
+        "allow-plugins": {
+            "composer/installers": true,
+            "silverstripe/recipe-plugin": true,
+            "silverstripe/vendor-plugin": true
+        },
+        "platform": {
+            "php": "8.4"
+        }
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Amir Mehmedovic",
+            "email": "kalakotra@gmail.com",
+            "homepage": "https://kalakotra.com",
+            "role": "Developer"
+        }
+    ]
+}

@@ -1,0 +1,11 @@
+---
+Name: custom-security-authenticator
+After: '#coresecurity'
+---
+SilverStripe\Core\Injector\Injector:
+  CustomMemberAuthenticator:
+    class: CustomMemberAuthenticator
+  SilverStripe\Security\Security:
+    properties:
+      Authenticators:
+        default: '%$CustomMemberAuthenticator'

@@ -1,0 +1,10 @@
+# See https://docs.silverstripe.org/en/6/developer_guides/email/ for additional information about setting up email
+---
+Name: project-emailconfig
+After:
+  - '#mailer'
+---
+SilverStripe\Core\Injector\Injector:
+  Symfony\Component\Mailer\Transport\TransportInterface:
+    constructor:
+      dsn: 'sendmail://default'
