@@ -1,0 +1,34 @@
+<nav class="primary">
+	<ul class="nav justify-content-end">
+        <% loop $Menu(1) %>
+			<li class="$LinkingMode nav-item">
+				<a href="$Link" title="$Title.XML" class="nav-link">$MenuTitle.XML</a>
+			</li>
+		<% end_loop %>
+		<li class="nav-item">
+			<a href="https://www.facebook.com/wirsind1.at" class="nav-link fbShare- px-2"  rel="noopener" target="_blank" ><i class="fab fa-facebook-square fa-lg"></i><span class="visually-hidden">Facebook Share</span></a>
+		</li>
+		<li class="nav-item">
+			<a href="https://www.instagram.com/wirsind1_noe/" class="nav-link px-2" target="_blank" rel="noopener" ><i class="fab fa-instagram-square fa-lg"></i><span class="visually-hidden">Instagram</span></a>
+		</li>
+		<li class="nav-item">
+			<a href="https://www.youtube.com/@wirsind1-ein-personen-unte450/videos" class="nav-link px-2" target="_blank" rel="noopener" ><i class="fab fa-youtube fa-lg"></i><span class="visually-hidden">Youtube</span></a>
+		</li>
+		<% if getCurrentMember %>
+			
+			<li class="nav-item">
+				<a href="/epu-netzwerk/profil" class="nav-link px-2" title="Profil bearbeiten"><i class="fas fa-user-edit"></i><span class="visually-hidden">Edit Profile</span></a>
+			</li>
+			<li>
+				<a href="/Security/logout?BackURL=/home" class="nav-link px-2" title="Logout"><i class="fas fa-sign-out-alt"></i><span class="visually-hidden">Logout</span></a>
+			</li>
+		<% else %>
+			<li class="nav-item d-none">
+				<a href="/epu-netzwerk/profil" class="nav-link px-2" title="Profil erstellen"><i class="fas fa-user-plus"></i><span class="visually-hidden">Register</span></a>
+			</li>
+			<li class="nav-item">
+				<a href="/Security/login?BackURL=/epu-netzwerk/profil" class="nav-link px-2" title="Login"><i class="far fa-user-circle"></i><span class="visually-hidden">Login</span></a>
+			</li>
+		<% end_if %>
+	</ul>
+</nav>
