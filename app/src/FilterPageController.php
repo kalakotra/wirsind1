@@ -34,6 +34,10 @@ namespace {
             'details' 
         ];
 
+        private static $url_handlers = [
+            'details/$ID/$OtherID' => 'details'
+        ];
+
         public function init() {
             parent::init();
             $myMemberID = $this->getRequest()->param("Action");

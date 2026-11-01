@@ -1,27 +1,29 @@
 <?php
 
-use SilverStripe\Forms\HiddenField;
+use SilverStripe\AssetAdmin\Forms\UploadField;
+use SilverStripe\Assets\File;
+use SilverStripe\Assets\Image;
+use SilverStripe\Control\Director;
+use SilverStripe\Control\Email\Email;
 use SilverStripe\Core\Extension;
-use SilverStripe\Forms\FieldList;
-use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\CheckboxField;
 use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\FieldList;
+use SilverStripe\Forms\HiddenField;
+use SilverStripe\Forms\LiteralField;
 use SilverStripe\Forms\TextField;
-use SilverStripe\Assets\Image;
-use SilverStripe\Assets\File;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\DB;
-use SilverStripe\AssetAdmin\Forms\UploadField;
-use SilverStripe\Control\Email\Email;
-use SilverStripe\Control\Director;
-use SilverStripe\SiteConfig\SiteConfig;
 use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\Security\Security;
+use SilverStripe\SiteConfig\SiteConfig;
+use SilverStripe\View\Parsers\URLSegmentFilter;
 
 class MemberExtension extends Extension
 {
 
     private static $db = [
+        'URLSegmentCompany' => 'Varchar',
         'CompanyName' => 'Varchar',
         'Street' => 'Varchar',
         'PostCode' => 'Varchar',
@@ -134,6 +136,7 @@ class MemberExtension extends Extension
         $fields->addFieldToTab("Root.Main", UploadField::create("Image"));
 
         $fields->removeByName([
+            'URLSegmentCompany',
             'OldId',
             'OldText',
             'OldImageId',
@@ -213,6 +216,10 @@ class MemberExtension extends Extension
     public function onBeforeWrite() {
         // check if something changed
         $changed = $this->owner->getChangedFields(true, DataObject::CHANGE_VALUE);
+
+        if ($this->owner->URLSegmentCompany == "" && $this->owner->CompanyName != "") {
+            $this->owner->URLSegmentCompany = $this->owner->generateURLSegmentCompany();
+        }
 
         if ($this->owner->InCMS == 1) {
             $this->owner->ChangedFieldsText = "";
@@ -295,6 +302,19 @@ class MemberExtension extends Extension
             $this->owner->New = 0;
             
         }
+    }
+
+    public function generateURLSegmentCompany()
+    {
+        $filter = URLSegmentFilter::create();
+        $name = $this->owner->CompanyName;
+        $urlSegment = $filter->filter($name);
+
+        if (!$urlSegment || $urlSegment == '-' || $urlSegment == '-1') {
+            $urlSegment = 'profile-' . $this->owner->ID;
+        }
+
+        return $urlSegment;
     }
 
     public function myNew() {

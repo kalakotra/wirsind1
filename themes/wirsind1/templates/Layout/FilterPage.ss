@@ -44,7 +44,7 @@
 											$Image.FocusFill(150,150)
 										<% end_if %>
 									</div>
-									<a href="{$Top.Link}/details/$ID" class="d-block stretched-link text-decoration-none text-body">{$Name}<% if $Region %>, $Region<% end_if %></a>
+									<a href="{$Top.Link}/details/{$ID}/$URLSegmentCompany" class="d-block stretched-link text-decoration-none text-body">{$Name}<% if $Region %>, $Region<% end_if %></a>
 									<div class="h3 fw-bold px-lg-5">
 										$CompanyName
 									</div>
@@ -60,7 +60,7 @@
 											$Image.FocusFill(150,150)
 										<% end_if %>
 									</div>
-									<a href="{$Top.Link}/details/$ID" class="d-block stretched-link text-decoration-none text-body">{$Name}<% if $Region %>, $Region<% end_if %></a>
+									<a href="{$Top.Link}/details/{$ID}/$URLSegmentCompany" class="d-block stretched-link text-decoration-none text-body">{$Name}<% if $Region %>, $Region<% end_if %></a>
 									<div class="h3 fw-bold px-lg-5">
 										$CompanyName
 									</div>
