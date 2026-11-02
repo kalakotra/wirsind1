@@ -224,8 +224,8 @@ class MemberExtension extends Extension
         if ($this->owner->InCMS == 1) {
             $this->owner->ChangedFieldsText = "";
         } else {
-            // if outside CMS, save changed fields to ChangedFieldsText
-            $this->owner->ChangedFieldsText = implode(", ", array_keys($changed));
+            // if outside CMS, save changed fields to ChangedFieldsText. Don't overwrite actual changes made in CMS
+            $this->owner->ChangedFieldsText .= implode(", ", array_keys($changed)) . ", ";
         }
 
         if (!empty($changed)) {
