@@ -73,7 +73,7 @@ namespace {
 
             } else {
                 // only published EPU profiles (group 3) are public - never other accounts like admins
-                if ($myMember->New == 1 || $myMember->Deactivated == 1 || !$myMember->inGroup(3)) {
+                if ($myMember->New == 1 || $myMember->Deactivated == 1 || $myMember->Changed == 1 || !$myMember->inGroup(3)) {
                     return $this->redirect($this->Link());
                 }
             }
