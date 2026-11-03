@@ -153,7 +153,7 @@ use SilverStripe\View\SSViewer;
         }
 
         public function getMyMembers($paginated = true) {
-            $myGroupMembers = Group::get()->byId(3)->Members()->exclude("New", "1")->exclude("Deactivated", "1");
+            $myGroupMembers = Group::get()->byId(3)->Members()->exclude(["New"=>"1","Deactivated"=>"1", "Changed"=>"1"]);
 
             if ($paginated) {
                 $myPagination = PaginatedList::create($myGroupMembers, $this->getRequest());
