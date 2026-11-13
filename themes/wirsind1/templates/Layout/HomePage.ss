@@ -40,8 +40,8 @@
 			</div>
 			<div class="col-12 py-3 py-lg-5">
 				<div class="row memberBoxTopHolder">
-					<% loop getMyMembers.sort("Created DESC").limit(3) %>
-						<div class="col-12 col-md-6 col-xl-4 py-3" data-info="$New - $Deactivated">
+					<% loop getMyMembers.exclude("Changed", "1").exclude("New", "1").exclude("Deactivated", "1").sort("Created DESC").limit(3) %>
+						<div class="col-12 col-md-6 col-xl-4 py-3" data-info="$New - $Deactivated - $Changed">
 							<div class="memberBoxHolder shadow p-3 px-lg-5 text-center rounded-xl h-100 ">
 								<div class="rounded-circle overflow-hidden d-inline-block ms-auto me-auto">
 									<% if $Image %>

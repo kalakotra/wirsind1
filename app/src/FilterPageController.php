@@ -94,7 +94,7 @@ namespace {
         public function getBackLinkMembers() {
             // check get variable "paged"
             if (isset($_GET["paged"])) {
-                $myGroupMembers = Group::get()->byId(3)->Members()->exclude("New", "1")->exclude("Deactivated", "1")->sort("Created DESC");
+                $myGroupMembers = Group::get()->byId(3)->Members()->exclude("New", "1")->exclude("Changed", "1")->exclude("Deactivated", "1")->sort("Created DESC");
 
                 if (isset($_GET["ind"])) {
                     $myGroupMembers = $myGroupMembers->filter("MemberIndustryID",$_GET["ind"]);
@@ -165,7 +165,7 @@ namespace {
         }
 
         public function getMyMembersNew($paginated = true) {
-            $myGroupMembers = Group::get()->byId(3)->Members()->exclude("New", "1")->exclude("Deactivated", "1")->sort("Created DESC");
+            $myGroupMembers = Group::get()->byId(3)->Members()->exclude("New", "1")->exclude("Changed", "1")->exclude("Deactivated", "1")->sort("Created DESC");
 
             if (isset($_GET["ind"])) {
                 $myGroupMembers = $myGroupMembers->filter("MemberIndustryID",$_GET["ind"]);

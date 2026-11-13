@@ -53,7 +53,7 @@
 						<% end_loop %>
 					<% else %>
 						<% loop getMyMembers %>
-							<div class="col-12 col-md-6 col-xl-4 py-3" data-changed="$Changed"	>
+							<div class="col-12 col-md-6 col-xl-4 py-3">
 								<div class="memberBoxHolder shadow p-3 px-lg-5 text-center rounded-xl h-100 ">
 									<div class="rounded-circle overflow-hidden d-inline-block ms-auto me-auto">
 										<% if $Image %>
@@ -85,4 +85,4 @@
 			</div>
 		</div>
 	</div>
-</main>
+</main>

@@ -27,31 +27,53 @@ function showIframeElement() {
 			}
 		});
 
-		var LoadMoreButtonTime = 1000;
-		
+		// show "Mehr laden" only when a next page link exists
+		function updateLoadMoreButton() {
+			if ($("a.memberBoxLoadMoreLink").length == 0) {
+				$("#memberBoxLoadMoreButton").hide();
+			} else {
+				$("#memberBoxLoadMoreButton").show();
+			}
+		}
+
+		function updateNoSearchResults() {
+			if ($("#memberBoxTopHolder .memberBoxHolder").length == 0) {
+				$("#noSearchResults").show();
+			} else {
+				$("#noSearchResults").hide();
+			}
+		}
+
+		if ($("#memberBoxTopHolder").length > 0) {
+			updateLoadMoreButton();
+			updateNoSearchResults();
+		}
+
+		// load next 12 members and append them to the list
 		$("#memberBoxLoadMoreButton").on("click", function() {
-			var myLink = $("a.memberBoxLoadMoreLink").last().attr("href");
+			var myButton = $(this);
+			var myLinkElement = $("a.memberBoxLoadMoreLink").last();
+			if (myLinkElement.length == 0 || myButton.prop("disabled")) {
+				return;
+			}
 
 			// remove variable "paged" from the URL
-			var myLink = myLink.replace(/&paged=[0-9]*/, "");
-			console.log(myLink);
+			var myLink = myLinkElement.attr("href").replace(/&paged=[0-9]*/, "");
 
-			var myHolder = $("#memberBoxLoading").append('<div>');
-			$("#memberBoxLoading div").last().load(myLink + " #memberBoxTopHolder ", function(responseTxt, statusTxt, xhr) {
+			myButton.prop("disabled", true);
 
+			$.get(myLink, function(html) {
+				var newItems = $("<div>").append($.parseHTML(html)).find("#memberBoxTopHolder").children();
+
+				// remove old "next" link, the loaded items contain the new one
+				myLinkElement.parent().remove();
+				$("#memberBoxTopHolder").append(newItems);
+
+				history.pushState({}, '', myLink + "&paged=1");
+			}).always(function() {
+				myButton.prop("disabled", false);
+				updateLoadMoreButton();
 			});
-
-			myLink = myLink + "&paged=1";
-			history.pushState({}, '', myLink);
-			
-
-			$("a.memberBoxLoadMoreLink").last().parent().remove();
-
-			setTimeout(function() {
-				if ($("a.memberBoxLoadMoreLink").length == 0) {
-					$("#memberBoxLoadMoreButton").remove();
-				} 
-			}, LoadMoreButtonTime);
 		});
 
 		$("#memberBoxIndustryFilter, #memberBoxRegionFilter").on("change", function() {
@@ -68,30 +90,17 @@ function showIframeElement() {
 			}
 
 			if ($("#memberBoxTextFilter").val() != "") {
-				var myFilter = myFilter + "&tx=" + $("#memberBoxTextFilter").val();
+				var myFilter = myFilter + "&tx=" + encodeURIComponent($("#memberBoxTextFilter").val());
 			} 
 
 
 			var myLink = $(this).data("href")+myFilter;
-			console.log(myLink);
 			history.pushState({}, '', myLink);
 
-			var myHolder = $("#memberBoxLoading").append('<div>');
-			$("#memberBoxTopHolder").last().load(myLink + " #memberBoxTopHolder > div", function(responseTxt, statusTxt, xhr) {
-
+			$("#memberBoxTopHolder").load(myLink + " #memberBoxTopHolder > div", function() {
+				updateLoadMoreButton();
+				updateNoSearchResults();
 			});
-
-			setTimeout(function() {
-				if ($("a.memberBoxLoadMoreLink").length == 0) {
-					$("#memberBoxLoadMoreButton").hide();
-				} else {
-					$("#memberBoxLoadMoreButton").show();
-				}
-
-				if ($("#memberBoxTopHolder > div").length == 0) {
-					$("#noSearchResults").show();
-				}
-			}, LoadMoreButtonTime);
 		});
 
 		var myTimer = "";
